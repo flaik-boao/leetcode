@@ -1,4 +1,4 @@
-import { findMaxConsecutiveOnes, findNumbers, duplicateZeros } from './index'
+import { findMaxConsecutiveOnes, findNumbers, duplicateZeros, merge } from './index'
 
 describe('findMaxConsecutiveOnes', () => {
   const findMaxConsecutiveOnesTestCase = [{ array: [1, 1, 0, 0], result: 2 }]
@@ -42,6 +42,26 @@ describe('duplicateZero', () => {
     test(`duplicateZero [${array}]`, () => {
       duplicateZeros(array)
       expect(array).toStrictEqual(result)
+    })
+  })
+})
+
+describe('merge', () => {
+  const mergeTestCase = [
+    {
+      args: { nums1: [1, 2, 3, 0, 0, 0], m: 3, nums2: [2, 5, 6], n: 3 },
+      result: [1, 2, 2, 3, 5, 6],
+    },
+  ]
+  mergeTestCase.forEach((testCase) => {
+    const {
+      args: { nums1, m, nums2, n },
+      result,
+    } = testCase
+
+    test(`merge nums1:[${nums1}] m:${m} nums2:[${nums2}] n:${n}`, () => {
+      merge(nums1, m, nums2, n)
+      expect(nums1).toStrictEqual(result)
     })
   })
 })
