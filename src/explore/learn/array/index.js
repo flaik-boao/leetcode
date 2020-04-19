@@ -237,6 +237,72 @@ const removeDuplicates = function (nums) {
   return i + 1
 }
 
+/**
+ * Check If N and Its Double Exist
+    Given an array arr of integers, check if there exists two integers N and M such that N is the double of M ( i.e. N = 2 * M).
+
+    More formally check if there exists two indices i and j such that :
+
+    i != j
+    0 <= i, j < arr.length
+    arr[i] == 2 * arr[j]
+    
+
+    Example 1:
+
+    Input: arr = [10,2,5,3]
+    Output: true
+    Explanation: N = 10 is the double of M = 5,that is, 10 = 2 * 5.
+ */
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+const checkIfExist = function (arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] === 2 * arr[j] || arr[j] === 2 * arr[i]) return true
+    }
+  }
+  return false
+}
+
+/**
+ * Valid Mountain Array
+    Given an array A of integers, return true if and only if it is a valid mountain array.
+
+    Recall that A is a mountain array if and only if:
+
+    A.length >= 3
+    There exists some i with 0 < i < A.length - 1 such that:
+    A[0] < A[1] < ... A[i-1] < A[i]
+    A[i] > A[i+1] > ... > A[A.length - 1]
+
+    Example 1:
+
+    Input: [2,1]
+    Output: false
+ */
+
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
+const validMountainArray = function (A) {
+  if (A.length < 3) return false
+  let direction = ''
+  for (let i = 0; i < A.length - 1; i++) {
+    if (A[i] < A[i + 1]) {
+      if (direction === 'down') return false
+      direction = 'up'
+    } else if (A[i] > A[i + 1]) {
+      if (direction === '') return false
+      direction = 'down'
+    } else return false
+  }
+  if (direction === 'up') return false
+  return true
+}
 export {
   findMaxConsecutiveOnes,
   findNumbers,
@@ -245,4 +311,6 @@ export {
   merge,
   removeElement,
   removeDuplicates,
+  checkIfExist,
+  validMountainArray,
 }

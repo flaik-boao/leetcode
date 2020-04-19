@@ -5,6 +5,8 @@ import {
   merge,
   removeElement,
   removeDuplicates,
+  checkIfExist,
+  validMountainArray,
 } from './index'
 
 describe('findMaxConsecutiveOnes', () => {
@@ -112,6 +114,54 @@ describe('removeDuplicates', () => {
 
     test(`removeDuplicates nums:[${nums}] result:${result}`, () => {
       expect(removeDuplicates(nums)).toBe(result)
+    })
+  })
+})
+
+describe('checkIfExist', () => {
+  const checkIfExistTestCase = [
+    {
+      nums: [10, 2, 5, 3],
+      result: true,
+    },
+    {
+      nums: [7, 1, 14, 11],
+      result: true,
+    },
+    {
+      nums: [3, 1, 7, 11],
+      result: false,
+    },
+  ]
+  checkIfExistTestCase.forEach((testCase) => {
+    const { nums, result } = testCase
+
+    test(`checkIfExist nums:[${nums}] result:${result}`, () => {
+      expect(checkIfExist(nums)).toBe(result)
+    })
+  })
+})
+
+describe('validMountainArray', () => {
+  const validMountainArrayTestCase = [
+    {
+      nums: [2, 1],
+      result: false,
+    },
+    {
+      nums: [3, 5, 5],
+      result: false,
+    },
+    {
+      nums: [0, 3, 2, 1],
+      result: true,
+    },
+  ]
+  validMountainArrayTestCase.forEach((testCase) => {
+    const { nums, result } = testCase
+
+    test(`validMountainArray nums:[${nums}] result:${result}`, () => {
+      expect(validMountainArray(nums)).toBe(result)
     })
   })
 })
