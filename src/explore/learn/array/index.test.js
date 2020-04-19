@@ -1,4 +1,11 @@
-import { findMaxConsecutiveOnes, findNumbers, duplicateZeros, merge } from './index'
+import {
+  findMaxConsecutiveOnes,
+  findNumbers,
+  duplicateZeros,
+  merge,
+  removeElement,
+  removeDuplicates,
+} from './index'
 
 describe('findMaxConsecutiveOnes', () => {
   const findMaxConsecutiveOnesTestCase = [{ array: [1, 1, 0, 0], result: 2 }]
@@ -62,6 +69,49 @@ describe('merge', () => {
     test(`merge nums1:[${nums1}] m:${m} nums2:[${nums2}] n:${n}`, () => {
       merge(nums1, m, nums2, n)
       expect(nums1).toStrictEqual(result)
+    })
+  })
+})
+
+describe('removeElement', () => {
+  const removeElementTestCase = [
+    {
+      args: { nums: [3, 2, 2, 3], val: 3 },
+      result: 2,
+    },
+    {
+      args: { nums: [0, 1, 2, 2, 3, 0, 4, 2], val: 2 },
+      result: 5,
+    },
+  ]
+  removeElementTestCase.forEach((testCase) => {
+    const {
+      args: { nums, val },
+      result,
+    } = testCase
+
+    test(`removeElement nums:[${nums}] val:${val}`, () => {
+      expect(removeElement(nums, val)).toBe(result)
+    })
+  })
+})
+
+describe('removeDuplicates', () => {
+  const removeDuplicatesTestCase = [
+    {
+      nums: [1, 1, 2],
+      result: 2,
+    },
+    {
+      nums: [0, 0, 1, 1, 1, 2, 2, 3, 3, 4],
+      result: 5,
+    },
+  ]
+  removeDuplicatesTestCase.forEach((testCase) => {
+    const { nums, result } = testCase
+
+    test(`removeDuplicates nums:[${nums}] result:${result}`, () => {
+      expect(removeDuplicates(nums)).toBe(result)
     })
   })
 })

@@ -67,7 +67,6 @@ const findNumbers = (nums) => nums.filter((num) => `${num}`.length % 2 === 0).le
 
 /**
  * Squares of a Sorted Array
-    Solution
     Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order.
 
     Example 1:
@@ -90,7 +89,6 @@ const sortedSquares = (nums) => nums.map((num) => Math.pow(num, 2)).sort((a, b) 
 
 /**
  * Duplicate Zeros
-    Solution
     Given a fixed length array arr of integers, duplicate each occurrence of zero, shifting the remaining elements to the right.
 
     Note that elements beyond the length of the original array are not written.
@@ -127,7 +125,6 @@ const duplicateZeros = function (arr) {
 
 /**
  * Merge Sorted Array
-    Solution
     Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
 
     Note:
@@ -154,9 +151,12 @@ const merge = function (nums1, m, nums2, n) {
   let i = 0
   let j = 0
   while (true) {
-    if (j > n - 1) break
+    if (j > n - 1) {
+      nums1.splice(m + n, nums1.length + nums2.length - m - n)
+      break
+    }
     if (i - j > m - 1) {
-      nums1.splice(i, 0, ...nums2.slice(j, n))
+      nums1.splice(i, nums1.length + nums2.length - m - n, ...nums2.slice(j, n))
       break
     }
     if (nums1[i] > nums2[j]) {
@@ -165,7 +165,84 @@ const merge = function (nums1, m, nums2, n) {
     }
     i++
   }
-  nums1.splice(m + n, nums1.length + nums2.length - m - n)
 }
 
-export { findMaxConsecutiveOnes, findNumbers, sortedSquares, duplicateZeros, merge }
+/**
+ * Remove Element
+    Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+
+    Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+    The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+    Example 1:
+
+    Given nums = [3,2,2,3], val = 3,
+
+    Your function should return length = 2, with the first two elements of nums being 2.
+
+    It doesn't matter what you leave beyond the returned length.
+ */
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+const removeElement = function (nums, val) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === val) {
+      nums.splice(i, 1)
+      i--
+    }
+  }
+  return nums.length
+}
+
+/**
+ * Remove Duplicates from Sorted Array
+    Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+
+    Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+    Example 1:
+
+    Given nums = [1,1,2],
+
+    Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+
+    It doesn't matter what you leave beyond the returned length.
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// const removeDuplicates = function(nums) {
+//     for(let i = 0;i<nums.length-1;i++){
+//         if(nums[i]===nums[i+1]){
+//             nums.splice(i,1)
+//             i--
+//         }
+//     }
+//     return nums.length
+// };
+const removeDuplicates = function (nums) {
+  if (nums.length === 0) return 0
+  let i = 0
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[i] !== nums[j]) {
+      i++
+      nums[i] = nums[j]
+    }
+  }
+  return i + 1
+}
+
+export {
+  findMaxConsecutiveOnes,
+  findNumbers,
+  sortedSquares,
+  duplicateZeros,
+  merge,
+  removeElement,
+  removeDuplicates,
+}
