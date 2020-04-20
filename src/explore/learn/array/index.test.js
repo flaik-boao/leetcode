@@ -12,6 +12,8 @@ import {
   sortArrayByParity,
   sortedSquares,
   heightChecker,
+  thirdMax,
+  findDisappearedNumbers,
 } from './index'
 
 describe('findMaxConsecutiveOnes', () => {
@@ -258,6 +260,42 @@ describe('heightChecker', () => {
 
     test(`heightChecker array:[${array}] result:${result}`, () => {
       expect(heightChecker(array)).toBe(result)
+    })
+  })
+})
+
+describe('thirdMax', () => {
+  const thirdMaxTestCase = [
+    {
+      array: [3, 2, 1],
+      result: 1,
+    },
+    {
+      array: [2, 2, 3, 1],
+      result: 1,
+    },
+  ]
+  thirdMaxTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    test(`thirdMax array:[${array}] result:${result}`, () => {
+      expect(thirdMax(array)).toBe(result)
+    })
+  })
+})
+
+describe('findDisappearedNumbers', () => {
+  const findDisappearedNumbersTestCase = [
+    {
+      array: [4, 3, 2, 7, 8, 2, 3, 1],
+      result: [5, 6],
+    },
+  ]
+  findDisappearedNumbersTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    test(`findDisappearedNumbers array:[${array}] result:${result}`, () => {
+      expect(findDisappearedNumbers(array)).toStrictEqual(result)
     })
   })
 })

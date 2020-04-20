@@ -430,6 +430,62 @@ const heightChecker = function (heights) {
   return origin.filter((height, i) => height !== heights[i]).length
 }
 
+/**
+ * Third Maximum Number
+    Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).
+
+    Example 1:
+    Input: [3, 2, 1]
+
+    Output: 1
+
+    Explanation: The third maximum is 1.
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const thirdMax = function (nums) {
+  if (nums.length < 3) return Math.max(...nums)
+  nums.sort((a, b) => b - a)
+  const array = [...new Set(nums)]
+  if (array.length < 3) return Math.max(...array)
+  return array[2]
+}
+
+/**
+ * Find All Numbers Disappeared in an Array
+    Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+
+    Find all the elements of [1, n] inclusive that do not appear in this array.
+
+    Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+
+    Example:
+
+    Input:
+    [4,3,2,7,8,2,3,1]
+
+    Output:
+    [5,6]
+ */
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+const findDisappearedNumbers = function (nums) {
+  let length = nums.length
+  let result = []
+  nums = [...new Set(nums.sort((a, b) => a - b))]
+  for (let i = 0; i < length; i++) {
+    if (nums[i] !== i + 1) {
+      nums.splice(i, 0, i + 1)
+      result.push(i + 1)
+    }
+  }
+  return result
+}
+
 export {
   findMaxConsecutiveOnes,
   findNumbers,
@@ -444,4 +500,6 @@ export {
   moveZeroes,
   sortArrayByParity,
   heightChecker,
+  thirdMax,
+  findDisappearedNumbers,
 }
