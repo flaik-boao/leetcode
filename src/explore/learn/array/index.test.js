@@ -7,6 +7,11 @@ import {
   removeDuplicates,
   checkIfExist,
   validMountainArray,
+  replaceElements,
+  moveZeroes,
+  sortArrayByParity,
+  sortedSquares,
+  heightChecker,
 } from './index'
 
 describe('findMaxConsecutiveOnes', () => {
@@ -30,6 +35,26 @@ describe('findNumbers', () => {
 
     test(`[${array}]`, () => {
       expect(findNumbers(array)).toBe(result)
+    })
+  })
+})
+
+describe('sortedSquares', () => {
+  const sortedSquaresTestCase = [
+    {
+      array: [-4, -1, 0, 3, 10],
+      result: [0, 1, 9, 16, 100],
+    },
+    {
+      array: [-7, -3, 2, 3, 11],
+      result: [4, 9, 9, 49, 121],
+    },
+  ]
+  sortedSquaresTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    test(`sortedSquares array:[${array}] result:${result}`, () => {
+      expect(sortedSquares(array)).toStrictEqual(result)
     })
   })
 })
@@ -162,6 +187,77 @@ describe('validMountainArray', () => {
 
     test(`validMountainArray nums:[${nums}] result:${result}`, () => {
       expect(validMountainArray(nums)).toBe(result)
+    })
+  })
+})
+
+describe('replaceElements', () => {
+  const replaceElementsTestCase = [
+    {
+      array: [17, 18, 5, 4, 6, 1],
+      result: [18, 6, 6, 6, 1, -1],
+    },
+  ]
+  replaceElementsTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    test(`replaceElements array:[${array}] result:${result}`, () => {
+      expect(replaceElements(array)).toStrictEqual(result)
+    })
+  })
+})
+
+describe('moveZeroes', () => {
+  const moveZeroesTestCase = [
+    {
+      array: [0, 1, 0, 3, 12],
+      result: [1, 3, 12, 0, 0],
+    },
+  ]
+  moveZeroesTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    test(`moveZeroes array:[${array}] result:${result}`, () => {
+      moveZeroes(array)
+      expect(array).toStrictEqual(result)
+    })
+  })
+})
+
+describe('sortArrayByParity', () => {
+  const sortArrayByParityTestCase = [
+    {
+      array: [3, 1, 2, 4],
+      result: [2, 4, 3, 1], // The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+    },
+  ]
+  sortArrayByParityTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    const compareString = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+    test(`sortArrayByParity array:[${array}] result:${result}`, () => {
+      expect(
+        compareString(sortArrayByParity(array), [2, 4, 3, 1]) ||
+          compareString(sortArrayByParity(array), [4, 2, 3, 1]) ||
+          compareString(sortArrayByParity(array), [2, 4, 1, 3]) ||
+          compareString(sortArrayByParity(array), [4, 2, 1, 3])
+      ).toBeTruthy()
+    })
+  })
+})
+
+describe('heightChecker', () => {
+  const heightCheckerTestCase = [
+    {
+      array: [1, 1, 4, 2, 1, 3],
+      result: 3,
+    },
+  ]
+  heightCheckerTestCase.forEach((testCase) => {
+    const { array, result } = testCase
+
+    test(`heightChecker array:[${array}] result:${result}`, () => {
+      expect(heightChecker(array)).toBe(result)
     })
   })
 })

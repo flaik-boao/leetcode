@@ -303,6 +303,133 @@ const validMountainArray = function (A) {
   if (direction === 'up') return false
   return true
 }
+
+/**
+ * Replace Elements with Greatest Element on Right Side
+    Given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
+
+    After doing so, return the array.
+
+    
+
+    Example 1:
+
+    Input: arr = [17,18,5,4,6,1]
+    Output: [18,6,6,6,1,-1]
+
+    Constraints:
+
+    1 <= arr.length <= 10^4
+    1 <= arr[i] <= 10^5
+ */
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+const replaceElements = function (arr) {
+  let array = [-1]
+  let max = -1
+  for (let i = arr.length - 1; i > 0; i--) {
+    max = Math.max(max, arr[i])
+    array.unshift(max)
+  }
+  return array
+}
+
+/**
+ * Move Zeroes
+    Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+    Example:
+
+    Input: [0,1,0,3,12]
+    Output: [1,3,12,0,0]
+    Note:
+
+    You must do this in-place without making a copy of the array.
+    Minimize the total number of operations.
+ */
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+const moveZeroes = function (nums) {
+  let j = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[j] = nums[i]
+      if (i !== j) nums[i] = 0
+      j++
+    }
+  }
+}
+
+/**
+ * Sort Array By Parity
+    Given an array A of non-negative integers, return an array consisting of all the even elements of A, followed by all the odd elements of A.
+
+    You may return any answer array that satisfies this condition.
+
+    Example 1:
+
+    Input: [3,1,2,4]
+    Output: [2,4,3,1]
+    The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+    
+    Note:
+
+    1 <= A.length <= 5000
+    0 <= A[i] <= 5000
+ */
+/**
+ * @param {number[]} A
+ * @return {number[]}
+ */
+const sortArrayByParity = function (A) {
+  let j = 0
+  let temp = null
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] % 2 === 0) {
+      temp = A[j]
+      A[j] = A[i]
+      A[i] = temp
+      j++
+    }
+  }
+  return A
+}
+
+/**
+ * Height Checker
+    Students are asked to stand in non-decreasing order of heights for an annual photo.
+
+    Return the minimum number of students that must move in order for all students to be standing in non-decreasing order of height.
+
+    Notice that when a group of students is selected they can reorder in any possible way between themselves and the non selected students remain on their seats.
+
+    
+
+    Example 1:
+
+    Input: heights = [1,1,4,2,1,3]
+    Output: 3
+    Explanation: 
+    Current array : [1,1,4,2,1,3]
+    Target array  : [1,1,1,2,3,4]
+    On index 2 (0-based) we have 4 vs 1 so we have to move this student.
+    On index 4 (0-based) we have 1 vs 3 so we have to move this student.
+    On index 5 (0-based) we have 3 vs 4 so we have to move this student.
+ */
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+const heightChecker = function (heights) {
+  const origin = heights.slice()
+  heights.sort((a, b) => a - b)
+  return origin.filter((height, i) => height !== heights[i]).length
+}
+
 export {
   findMaxConsecutiveOnes,
   findNumbers,
@@ -313,4 +440,8 @@ export {
   removeDuplicates,
   checkIfExist,
   validMountainArray,
+  replaceElements,
+  moveZeroes,
+  sortArrayByParity,
+  heightChecker,
 }
