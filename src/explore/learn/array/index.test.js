@@ -17,7 +17,10 @@ import {
 } from './index'
 
 describe('findMaxConsecutiveOnes', () => {
-  const findMaxConsecutiveOnesTestCase = [{ array: [1, 1, 0, 0], result: 2 }]
+  const findMaxConsecutiveOnesTestCase = [
+    { array: [1, 1, 0, 0], result: 2 },
+    { array: [1, 1, 0, 1, 1, 1], result: 3 },
+  ]
   findMaxConsecutiveOnesTestCase.forEach((testCase) => {
     const { array, result } = testCase
 
