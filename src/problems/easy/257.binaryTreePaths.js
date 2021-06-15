@@ -15,7 +15,7 @@ var binaryTreePaths = function (root) {
 
   const fn = (node, path) => {
     if (!node) {
-      return [];
+      return;
     } else if (!node.left && !node.right) {
       paths.push([...path, node.val]);
     } else {
@@ -28,16 +28,3 @@ var binaryTreePaths = function (root) {
 
   return paths.map((path) => path.join("->"));
 };
-
-// [1,2,3,null,5]
-console.log(
-  binaryTreePaths({
-    val: 1,
-    left: { val: 2, left: null, right: { val: 5, left: null, right: null } },
-    right: { val: 3, left: null, right: null },
-  })
-);
-
-//          1
-//     2           3
-// x       5
