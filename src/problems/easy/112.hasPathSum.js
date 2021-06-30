@@ -12,6 +12,22 @@
  * @return {boolean}
  */
 var hasPathSum = function (root, targetSum) {
+  if (!root) return false;
+  const fn = (node, current) => {
+    if (!node) {
+      return false;
+    } else if (!node.left && !node.right) {
+      return current + node.val === targetSum;
+    } else {
+      return (
+        fn(node.left, current + node.val) || fn(node.right, current + node.val)
+      );
+    }
+  };
+  return fn(root, 0);
+};
+
+var hasPathSum2 = function (root, targetSum) {
   const sums = [];
 
   if (!root) return false;
@@ -36,11 +52,11 @@ var hasPathSum = function (root, targetSum) {
 
 console.log(
   hasPathSum(
-    { val: 1, left: { val: 2, left: null, right: null }, right: null },
-    1
+    {
+      val: 1,
+      left: { val: 2, left: null, right: null },
+      right: { val: 3, left: null, right: null },
+    },
+    5
   )
 );
-//1
-
-//     1
-//   2
