@@ -25,8 +25,6 @@ var isValidSudoku = function (board) {
     [[], [], [], [], [], [], [], [], []]
   )
 
-  console.log({ columns })
-
   const valid = (array) => {
     return (
       new Set(array.filter((_) => _ !== ".")).size ===
