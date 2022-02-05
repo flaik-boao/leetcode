@@ -33,3 +33,12 @@ var reverseList = function (head) {
 
   return previousNode
 }
+
+const a = "abcdef"
+
+// for (let index = 0; index < array.length; index++) {
+//   const element = array[index]
+//   a[0] = "change"
+// }
+a[0] = 's'
+console.log(a)
