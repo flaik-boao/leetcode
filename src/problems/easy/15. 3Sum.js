@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function (nums) {
+export var threeSum = function (nums) {
   const result = new Set()
   for (let i = 0; i < nums.length - 2; i++) {
     for (let j = i + 1; j < nums.length - 1; j++) {
@@ -12,8 +12,6 @@ var threeSum = function (nums) {
       }
     }
   }
-  console.log(Array.from(result).map((_) => _.split(" ").map((_) => Number(_))))
   return Array.from(result).map((_) => _.split(" ").map((_) => Number(_)))
 }
 
-threeSum([-1, 0, 1, 2, -1, -4])

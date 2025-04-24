@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function (s) {
+export var romanToInt = function (s) {
   if (s.startsWith("IV")) {
     return getNumber(s.slice(2)) + 4;
   } else if (s.startsWith("IX")) {
